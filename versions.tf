@@ -11,7 +11,7 @@ terraform {
   required_providers {
     aws = {
       #source  = "hashicorp/aws"
-      source  = "app.terraform.io/aws"
+      source  = "app.terraform.io/acme-cloud-demo/aws"
       version = "~> 4.26.0"
     }
   }

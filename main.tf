@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "ssh" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  security_group_id = aws_security_group.default_sg.id
+  security_group_id = data.aws_security_group.default_sg.id
 }
 
 resource "aws_instance" "rhel" {

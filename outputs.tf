@@ -5,3 +5,7 @@ output "instance_ami" {
 output "instance_arn" {
   value = aws_instance.rhel.arn
 }
+
+output "instance_ip" {
+  value = aws_instance.rhel.public_ip
+}

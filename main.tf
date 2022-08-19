@@ -22,9 +22,16 @@ data "aws_ami" "rhel" {
   owners = ["309956199498"] # Red Hat Cloud Acces Gold Image
 }
 
+resource "aws_key_pair" "rhel" {
+  key_name   = format("%s-%s", var.instance_name, "key")
+  public_key = var.ssh_admin_user_public_key
+}
+
 resource "aws_instance" "rhel" {
-  ami           = data.aws_ami.rhel.id
-  instance_type = var.instance_type
+  ami                         = data.aws_ami.rhel.id
+  instance_type               = var.instance_type
+  associate_public_ip_address = true
+  key_name                    = aws_key_pair.rhel.key_name 
 
   tags = {
     Name = var.instance_name

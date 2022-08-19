@@ -5,5 +5,9 @@ variable "instance_type" {
 
 variable "instance_name" {
   description = "EC2 instance name"
-  default     = "Provisioned by Terraform"
+}
+
+variable "ssh_admin_user_public_key" {
+  description = "Admin User SSH Public Key"
+  type        = string
 }

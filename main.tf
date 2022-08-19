@@ -22,9 +22,22 @@ data "aws_ami" "rhel" {
   owners = ["309956199498"] # Red Hat Cloud Acces Gold Image
 }
 
+data "aws_security_group" "default_sg" {
+  name = "default"
+}
+
 resource "aws_key_pair" "rhel" {
   key_name   = format("%s-%s", var.instance_name, "key")
   public_key = var.ssh_admin_user_public_key
+}
+
+resource "aws_security_group_rule" "ssh" {
+  type              = "ingress"
+  description       = "SSH Ingress to Instance"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  security_group_id = aws_security_group.default_sg.id
 }
 
 resource "aws_instance" "rhel" {

@@ -38,6 +38,7 @@ resource "aws_security_group_rule" "ssh" {
   to_port           = 22
   protocol          = "tcp"
   security_group_id = data.aws_security_group.default_sg.id
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 resource "aws_instance" "rhel" {

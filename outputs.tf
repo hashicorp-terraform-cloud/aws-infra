@@ -9,3 +9,7 @@ output "instance_arn" {
 output "instance_ip" {
   value = aws_instance.rhel.public_ip
 }
+
+output "public_dns" {
+  value = aws_instance.rhel.public_dns
+}
